@@ -1,0 +1,9 @@
+<%= form_with model:@singer, local: true do |f| %>
+  <p>歌手名</p>
+  <%= f.text_field:name %>
+  <p>タイプ</p>
+  <%= f.text_field:kind %>
+  <p>画像</p>
+  <%= f.file_field:image %><br>
+  <%= f.submit "作成",class:"button" %>
+<% end %>

@@ -1,0 +1,23 @@
+<%if answer >= 0.0 && answer <0.1 %>
+  <div style="font-size:13px"><span class="star" data-rate="0.0"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.1 && answer <0.2 %>
+  <div style="font-size:13px"><span class="star" data-rate="0.5"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.2 && answer <0.3 %>
+  <div style="font-size:13px"><span class="star" data-rate="1.0"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.3 && answer <0.4 %>
+  <div style="font-size:13px"><span class="star" data-rate="1.5"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.4 && answer <0.5 %>
+  <div style="font-size:13px"><span class="star" data-rate="2.0"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.5 && answer <0.6 %>
+  <div style="font-size:13px"><span class="star" data-rate="2.5"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.6 && answer <0.7 %>
+  <div style="font-size:13px"><span class="star" data-rate="3.0"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.7 && answer <0.8 %>
+  <div style="font-size:13px"><span class="star" data-rate="3.5"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.8 && answer <0.9 %>
+  <div style="font-size:13px"><span class="star" data-rate="4.0"></span>(<%= answer%>)</div>
+<% elsif answer >= 0.9 && answer <1.0 %>
+  <div style="font-size:13px"><span class="star" data-rate="4.5"></span>(<%= answer%>)</div>
+<% else %>
+  <div style="font-size:13px"><span class="star" data-rate="5.0"></span>(<%= answer%>)</div>
+<% end %>

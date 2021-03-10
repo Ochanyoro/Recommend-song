@@ -1,0 +1,61 @@
+<div class="main user-show">
+  <div class="bcd">
+  <div class="container3">
+  <div class="user2">
+    <div class="migi2">
+      <% if @singer.image.attached? %>
+        <%= image_tag singer.image %>
+      <% else %>
+        <img src="<%= "/default_image.png" %>">
+      <% end %>
+
+    <h2><%= @singer.name %></h2>
+    </div>
+    <div class="hidari formmm users-form3">
+      <div class="form-body2">
+          <%= render "form2" %>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="container6">
+    <ul class="user-tabs">
+      <li><%= link_to("曲",singer_path(@singer)) %></li>
+      <li class="active"><%= link_to("コメント", "#") %></li>
+    </ul>
+      <% @messages.each_with_index do |message,i| %>
+        <% if i == 0%>
+          <div class="posts-index-item-i">
+            <div class="post-left-30">
+              <div class="post-user-name">
+                <%= link_to @posts.song, "/posts/#{@posts.id}/comment" %><br>
+                <% if user_signed_in? %>
+                  <% if Like.find_by(post_id:@posts.id,user_id:User.find_by(id:current_user).id) %>
+                    <%= link_to("/likes/#{@posts.id}/destroy3", {method: "post"}) do %>
+                      <span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:@posts.id).count %>)</font>
+                    <% end %>
+                  <% else %>
+                    <%= link_to("/likes/#{@posts.id}/post3", {method: "post"})  do %>
+                      <span class="fa fa-heart like-btn-unlike-like"></span><font color="black">(<%= Like.where(post_id:@posts.id).count %>)</font>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <p style="font-size:14px;margin-top:4px;"><span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:@posts.id).count %>)</font></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="post-right-60">
+              <p style="font-size:13px"><%= message.comment %></p>
+            </div>
+          </div>
+        <% else %>
+          <div class="posts-index-item-70">
+            <div class="post-right-100">
+              <p style="font-size:13px"><%= message.comment %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">コメントを編集する</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <%= render 'form'%>
+        <%= link_to "削除",message_path(@message),:method=>:delete ,class:"buttonn"%>
+      </div>
+    </div>
+  </div>
+</div>

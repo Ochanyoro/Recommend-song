@@ -1,0 +1,101 @@
+<div class="main user-show">
+  <div class="container3">
+  <div class="user2">
+    <div class="migi">
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image %>
+      <% else %>
+        <img src="<%= "/default_image.png" %>">
+      <% end %>
+
+      <div class="post-user-names">
+        <a style="text-decoration:none;" href="<%= @post.url %>"><%= @post.song %></a>
+      </div>
+
+    <% answer = @post.average %>
+      <%if answer >= 0.0 && answer <0.1 %>
+        <div style="font-size:13px"><span class="star" data-rate="0.0"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.1 && answer <0.2 %>
+        <div style="font-size:13px"><span class="star" data-rate="0.5"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.2 && answer <0.3 %>
+        <div style="font-size:13px"><span class="star" data-rate="1.0"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.3 && answer <0.4 %>
+        <div style="font-size:13px"><span class="star" data-rate="1.5"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.4 && answer <0.5 %>
+        <div style="font-size:13px"><span class="star" data-rate="2.0"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.5 && answer <0.6 %>
+        <div style="font-size:13px"><span class="star" data-rate="2.5"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.6 && answer <0.7 %>
+        <div style="font-size:13px"><span class="star" data-rate="3.0"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.7 && answer <0.8 %>
+        <div style="font-size:13px"><span class="star" data-rate="3.5"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.8 && answer <0.9 %>
+        <div style="font-size:13px"><span class="star" data-rate="4.0"></span>(<%= answer%>)</div>
+      <% elsif answer >= 0.9 && answer <1.0 %>
+        <div style="font-size:13px"><span class="star" data-rate="4.5"></span>(<%= answer%>)</div>
+      <% else %>
+        <div style="font-size:13px"><span class="star" data-rate="5.0"></span>(<%= answer%>)</div>
+      <% end %>
+
+
+    <div class="aa">
+    <% if @post.user == current_user %>
+      <%= link_to "編集", edit_post_path(@post) %>
+    <% end %>
+    </div>
+    </div>
+    <div class="hidari formm users-form2">
+      <div class="form-body2">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="container3">
+    <div class="posts-index-item">
+      <div class="comment"><p>コメント</p></div>
+    </div>
+
+    <% @messages.each do |message| %>
+      <div class="posts-index-item-i">
+        <div class="post-right5">
+          <p style="font-size:14px"><%= message.comment %></p>
+        <div class="posi">
+          <% @lover =Lover.find_by(message_id:message.id,user_id:current_user) %>
+          <% if @lover %>
+            <% if @lover.good.to_i == 0 %>
+              <%= link_to("/messages/#{message.id}/love", {method: "post"}) do %>
+                <span class="fa fa-heart like-btn-unlike-like"></span><font color="black"><%= Lover.where(message_id:message.id,good:1).count%></font>
+              <% end %>
+              <%= link_to("/messages/#{message.id}/delete", {method: "post"}) do %>
+                <span class="fa fa-heart like-btn"></span><font color="black"><%= Lover.where(message_id:message.id,good:0).count%></font>
+              <% end %>
+            <% else %>
+              <%= link_to("/messages/#{message.id}/delete", {method: "post"}) do %>
+                <span class="fa fa-heart like-btn-unlike"></span><font color="black"><%= Lover.where(message_id:message.id,good:1).count%></font>
+              <% end %>
+              <%= link_to("/messages/#{message.id}/bad", {method: "post"}) do %>
+                <span class="fa fa-heart like-btn-like"></span><font color="black"><%= Lover.where(message_id:message.id,good:0).count%></font>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to("/messages/#{message.id}/love", {method: "post"}) do %>
+              <span class="fa fa-heart like-btn-unlike-like"></span><font color="black"><%= Lover.where(message_id:message.id,good:1).count%></font>
+            <% end %>
+            <%= link_to("/messages/#{message.id}/bad", {method: "post"}) do %>
+              <span class="fa fa-heart like-btn-like"></span><font color="black"><%= Lover.where(message_id:message.id,good:0).count%></font>
+            <% end %>
+          <% end %>
+          <% if Post.find_by(id:message.post_id).user_id == current_user %>
+            <div class="hazi"><p>はじ</p></div>
+          <% end %>
+            <% if message.user_id == User.find_by(id:current_user).id %>
+
+              <%= link_to "編集", edit_message_path(message),class:"hazi" %>
+            <% end %>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

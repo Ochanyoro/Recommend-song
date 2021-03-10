@@ -1,0 +1,149 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="form-heading">おすすめSONG</div>
+    <div class="posts-index-item3">
+      <div class="rokugo"><p>歌</p></div>
+      <div class="nizero"><p>おすすめ度</p></div>
+      <div class="sango"><p>コメント</p></div>
+    </div>
+    <% @posts.each do |post| %>
+      <div class="posts-index-item2">
+        <div class="post-left">
+          <% if post.image.attached? %>
+            <%= image_tag post.image %>
+          <% else %>
+            <img src="<%= "/default_image.png" %>">
+          <% end %>
+        </div>
+        <div class="post-right2">
+          <div class="post-user-name">
+            <a href = "<%= post.url %>"><%= post.song %></a><br>
+            <% if user_signed_in? %>
+              <% if Like.find_by(post_id:post.id,user_id:User.find_by(id:current_user).id) %>
+                <%= link_to("/likes/#{post.id}/destroy", {method: "post"}) do %>
+                  <span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font>
+                <% end %>
+              <% else %>
+                <%= link_to("/likes/#{post.id}/post", {method: "post"})  do %>
+                  <span class="fa fa-heart like-btn-unlike-like"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font>
+                <% end %>
+              <% end %>
+            <% else %>
+              <p style="font-size:14px;margin-top:4px;"><span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="post-right3">
+          <div class="post-user-name">
+            <% answer = post.average %>
+              <%if answer >= 0.0 && answer <0.1 %>
+                <div style="font-size:13px"><span class="star" data-rate="0.0"></span></div>
+              <% elsif answer >= 0.1 && answer <0.2 %>
+                <div style="font-size:13px"><span class="star" data-rate="0.5"></span></div>
+              <% elsif answer >= 0.2 && answer <0.3 %>
+                <div style="font-size:13px"><span class="star" data-rate="1.0"></span></div>
+              <% elsif answer >= 0.3 && answer <0.4 %>
+                <div style="font-size:13px"><span class="star" data-rate="1.5"></span></div>
+              <% elsif answer >= 0.4 && answer <0.5 %>
+                <div style="font-size:13px"><span class="star" data-rate="2.0"></span></div>
+              <% elsif answer >= 0.5 && answer <0.6 %>
+                <div style="font-size:13px"><span class="star" data-rate="2.5"></span></div>
+              <% elsif answer >= 0.6 && answer <0.7 %>
+                <div style="font-size:13px"><span class="star" data-rate="3.0"></span></div>
+              <% elsif answer >= 0.7 && answer <0.8 %>
+                <div style="font-size:13px"><span class="star" data-rate="3.5"></span></div>
+              <% elsif answer >= 0.8 && answer <0.9 %>
+                <div style="font-size:13px"><span class="star" data-rate="4.0"></span></div>
+              <% elsif answer >= 0.9 && answer <1.0 %>
+                <div style="font-size:13px"><span class="star" data-rate="4.5"></span></div>
+              <% else %>
+                <div style="font-size:13px"><span class="star" data-rate="5.0"></span></div>
+              <% end %>
+        </div>
+      </div>
+
+      <div class="post-ri-right">
+        <div class="post-content">
+          <%if post.comment %>
+            <p><%= link_to post.comment.comment, message_path(post) %></p>
+          <% end %>
+        </div>
+          <% if post.user.id == current_user.id %>
+            <%= link_to "編集", edit_post_path(post),class:"aa" %>
+          <% end %>
+      </div>
+    </div>
+    <% end %>
+
+    <% if @posts2 %>
+      <% @posts2.each do |post| %>
+        <div class="posts-index-item2">
+          <div class="post-left">
+            <% if post.image.attached? %>
+              <%= image_tag post.image %>
+            <% else %>
+              <img src="<%= "/default_image.png" %>">
+            <% end %>
+          </div>
+          <div class="post-right2">
+            <div class="post-user-name">
+              <a href = "<%= post.url %>"><%= post.song %></a><br>
+              <% if user_signed_in? %>
+                <% if Like.find_by(post_id:post.id,user_id:User.find_by(id:current_user).id) %>
+                  <%= link_to("/likes/#{post.id}/destroy", {method: "post"}) do %>
+                    <span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font>
+                  <% end %>
+                <% else %>
+                  <%= link_to("/likes/#{post.id}/post", {method: "post"})  do %>
+                    <span class="fa fa-heart like-btn-unlike-like"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <p style="font-size:14px;margin-top:4px;"><span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="post-right3">
+            <div class="post-user-name">
+              <% answer = post.average %>
+                <%if answer >= 0.0 && answer <0.1 %>
+                  <div style="font-size:13px"><span class="star" data-rate="0.0"></span></div>
+                <% elsif answer >= 0.1 && answer <0.2 %>
+                  <div style="font-size:13px"><span class="star" data-rate="0.5"></span></div>
+                <% elsif answer >= 0.2 && answer <0.3 %>
+                  <div style="font-size:13px"><span class="star" data-rate="1.0"></span></div>
+                <% elsif answer >= 0.3 && answer <0.4 %>
+                  <div style="font-size:13px"><span class="star" data-rate="1.5"></span></div>
+                <% elsif answer >= 0.4 && answer <0.5 %>
+                  <div style="font-size:13px"><span class="star" data-rate="2.0"></span></div>
+                <% elsif answer >= 0.5 && answer <0.6 %>
+                  <div style="font-size:13px"><span class="star" data-rate="2.5"></span></div>
+                <% elsif answer >= 0.6 && answer <0.7 %>
+                  <div style="font-size:13px"><span class="star" data-rate="3.0"></span></div>
+                <% elsif answer >= 0.7 && answer <0.8 %>
+                  <div style="font-size:13px"><span class="star" data-rate="3.5"></span></div>
+                <% elsif answer >= 0.8 && answer <0.9 %>
+                  <div style="font-size:13px"><span class="star" data-rate="4.0"></span></div>
+                <% elsif answer >= 0.9 && answer <1.0 %>
+                  <div style="font-size:13px"><span class="star" data-rate="4.5"></span></div>
+                <% else %>
+                  <div style="font-size:13px"><span class="star" data-rate="5.0"></span></div>
+                <% end %>
+          </div>
+        </div>
+
+        <div class="post-ri-right">
+          <div class="post-content">
+            <%if post.comment %>
+              <p><%= link_to post.comment.comment, message_path(post) %></p>
+            <% end %>
+            <% if post.user == current_user %>
+              <%= link_to "編集", edit_post_path(post),class:"aa" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

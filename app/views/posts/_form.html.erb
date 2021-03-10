@@ -1,0 +1,18 @@
+<%= form_with model:@post, local: true do |f| %>
+  <p>曲</p>
+  <%= f.text_field:song %>
+  <p>タイプ</p>
+  <%= f.text_field:kind %>
+  <p>歌手名</p>
+  <%= f.text_field:singername %>
+  <p>url</p>
+  <%= f.text_field:url %>
+  <%= f.fields_for :messages do |message|   %>
+    <p>コメント</p>
+    <%= message.text_area :comment %>
+    <%= message.hidden_field :user_id,value:User.find_by(id:current_user).id%>
+  <% end %>
+  <p>画像</p>
+  <%= f.file_field:image %><br>
+  <%= f.submit "作成",class:"button" %>
+<% end %>

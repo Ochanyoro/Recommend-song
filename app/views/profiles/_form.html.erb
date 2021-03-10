@@ -1,0 +1,7 @@
+<%= form_with model:@profile, local: true do |f| %>
+  <p>メッセージ</p>
+  <%= f.text_field:content %>
+  <p>画像</p>
+  <%= f.file_field:image %><br>
+  <%= f.submit "作成",class:"button" %>
+<% end %>

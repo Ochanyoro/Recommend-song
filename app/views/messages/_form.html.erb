@@ -1,0 +1,7 @@
+<%= form_with model:@message, local: true do |f| %>
+  <p>コメント</p>
+  <%= f.text_area:comment,rows:3,class:"pd"%>
+  <%= f.hidden_field:post_id,value:@message.post_id%>
+  <%= f.hidden_field:user_id,value:User.find_by(id:current_user).id%>
+  <%= f.submit "作成",class:"button" %>
+<% end %>

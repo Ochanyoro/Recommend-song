@@ -1,0 +1,25 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="reigai">
+
+    <h1 class="form-heading5">歌手一覧</h1>
+    </div>
+      <% @singers.each do |singer| %>
+        <div class="posts-index-item">
+          <div class="post-left5">
+            <% if singer.image.attached? %>
+              <%= image_tag singer.image %>
+            <% else %>
+              <img src="<%= "/default_image.png" %>">
+            <% end %>
+
+          </div>
+          <div class="post-right6">
+            <div class="name5">
+              <%= link_to singer.name, singer_path(singer) %>
+            </div>
+          </div>
+      </div>
+      <% end %>
+  </div>
+</div>
