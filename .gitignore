@@ -41,3 +41,6 @@ yarn-debug.log*
 20210305070700_delte_all_to_lovers.rb
 20210305070927_delte_all_to_lover.rb
 20210304070652_remove_type_to_posts.rb
+20210306013005_all_user_to_messages.rb
+20210306014811_all_user_to_posts.rb
+20210306023626_all_user_to_p.rb
