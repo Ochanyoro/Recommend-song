@@ -44,3 +44,4 @@ yarn-debug.log*
 20210306013005_all_user_to_messages.rb
 20210306014811_all_user_to_posts.rb
 20210306023626_all_user_to_p.rb
+20210306042001_add_user_to_lovers.rb
