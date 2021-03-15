@@ -1,6 +1,6 @@
 <div class="main user-show">
   <div class="container">
-    <div class="form-heading">おすすめSONG</div>
+    <div class="form-heading">おすすめSONG<p style="font-size:14px">(今まで聞いてこなかったジャンルを発見しよう)</p></div>
     <div class="posts-index-item3">
       <div class="rokugo"><p>歌</p></div>
       <div class="nizero"><p>おすすめ度</p></div>
@@ -69,7 +69,9 @@
           <% end %>
         </div>
           <% if post.user.id == current_user.id %>
-            <%= link_to "編集", edit_post_path(post),class:"aa" %>
+          <div class="aa">
+            <%= link_to "編集", edit_post_path(post) %>
+          </div>
           <% end %>
       </div>
     </div>

@@ -1,31 +1,48 @@
 <header>
-  <div class="header-logo">
-    <%= link_to("Recommend-Song", "/") %>
-  </div>
-  <ul class="header-menus">
-      <% if user_signed_in? %>
-      <li>
-        <%= current_user.username%>
-      </li>
-      <li>
-        <%= link_to "歌手一覧",singers_path %>
-      </li>
-      <li>
-        <%= link_to "新規投稿",new_post_path %>
-      </li>
-      <li>
-        <%= link_to 'プロフィール変更',  new_profile_path%>
-      </li>
-      <li>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to 'ログイン', new_user_session_path %>
-      </li>
-    <% end %>
-  </ul>
+  <div id="humMenu">
+          <input id="humCheck" type="checkbox">
+          <label id="humOpen" for="humCheck"><img src="/icon.png" alt="メニュー" width="34" height="30"></label>
+          <label id="humClose" for="humCheck"></label>
+          <nav>
+            <ul class="inner">
+              <% if user_signed_in? %>
+              <li>
+                <%= link_to "歌手一覧",singers_path %>
+              </li>
+              <li>
+                <%= link_to "新規投稿",new_post_path %>
+              </li>
+              <li>
+                <%= link_to 'プロフィール変更',  new_profile_path%>
+              </li>
+              <li>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'サインアップ', new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'ログイン', new_user_session_path %>
+              </li>
+            <% end %>
+            </ul>
+          </nav>
+        </div>
+        <div class="abso">
+          <ul>
+            <% if current_user %>
+            <li>
+              <%= link_to("Recommend-Song", "/") %>
+            </li>
+            <li>
+              <%= link_to(current_user.username, "/users/#{current_user.id}") %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to("Recommend-Song", "/") %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
 </header>

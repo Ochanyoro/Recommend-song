@@ -218,12 +218,15 @@
 
 }
 
-.user2 .aa a {
-  color: #8899a6;
+.user2 .aa a{
+  color: white;
   text-decoration: underline;
   font-weight: 200;
 }
 
+.post-ri-right .aa a{
+  color:white;
+}
 
 
 .user-tabs {
@@ -334,6 +337,9 @@
 }
 
 .post-ri-right .aa{
+  position:absolute;
+  right:0;
+  bottom:0;
   background-color:#F78181;
   opacity: 1.0;
   //background-color: #3ecdc6;
@@ -342,7 +348,7 @@
   cursor: pointer;
   font-weight: 400;
   width: 50px;
-  margin-top:4px;
+  margin-top:0;
   border-radius: 2px;
   border:none;
   float:right;

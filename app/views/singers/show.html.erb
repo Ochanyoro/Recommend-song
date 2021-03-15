@@ -34,7 +34,7 @@
             <img src="<%= "/default_image.png" %>">
           <% end %>
         </div>
-        <div class="post-right2">
+        <div class="post-right22">
           <div class="post-user-name">
             <%= link_to post.song, "/posts/#{post.id}/comment" %><br>
             <% if user_signed_in? %>
@@ -48,12 +48,12 @@
                 <% end %>
               <% end %>
             <% else %>
-              <p style="font-size:14px;margin-top:4px;"><span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font></p>
+              <p style="font-size:13px;margin-top:1px;"><span class="fa fa-heart like-btn-unlike"></span><font color="black">(<%= Like.where(post_id:post.id).count %>)</font></p>
             <% end %>
           </div>
         </div>
         <div class="post-right-20">
-          <p style="font-size:14px;background-color:#BCF4BC;margin-bottom:5px;">おすすめ度</p>
+          <p >おすすめ度</p>
           <% answer = post.average %>
             <%if answer >= 0.0 && answer <0.1 %>
               <div style="font-size:13px"><span class="star" data-rate="0.0"></span></div>

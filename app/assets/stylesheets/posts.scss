@@ -29,6 +29,7 @@
 }
 
 .posts-index-item2 {
+  position:relative;
   padding: 10px 20px;
   background:linear-gradient(to right, white 67%, #BCF4BC 32%) ;
   overflow: hidden;
@@ -186,6 +187,21 @@
   padding-left: 25px;
   text-align: left;
 }
+.post-right22 {
+  float: left;
+  width: 40%;
+  padding-left: 25px;
+  text-align: left;
+}
+.posts-index-item-i .post-right-60 p{
+  background-color: white;
+  font-size:13px;
+}
+.posts-index-item-i .post-right5 p{
+  background-color: white;
+  font-size:14px;
+}
+
 .post-right3 {
   float: left;
   width: 15%;
