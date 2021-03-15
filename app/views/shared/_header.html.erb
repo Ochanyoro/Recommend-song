@@ -32,6 +32,9 @@
         <div class="abso">
           <ul>
             <% if current_user %>
+            <li class="insta">
+              <a href="https://www.instagram.com/o_style.ins"><img class="img-fluid" src="/insta.png" width="28" height="28"></a>
+            </li>
             <li>
               <%= link_to("Recommend-Song", "/") %>
             </li>
@@ -39,6 +42,9 @@
               <%= link_to(current_user.username, "/users/#{current_user.id}") %>
             </li>
             <% else %>
+            <li class="insta">
+              <a href="https://www.instagram.com/o_style.ins"><img class="img-fluid" src="/insta.png" width="28" height="28"></a>
+            </li>
             <li>
               <%= link_to("Recommend-Song", "/") %>
             </li>
